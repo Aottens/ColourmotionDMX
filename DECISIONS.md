@@ -5,6 +5,16 @@ Long-form records live in `specs/ADRs/`; this log is the index.
 
 ---
 
+## 2026-10-21 — VS3-01 done by the VS3-05 run (owner)
+
+**Decision:** The service-sized cue list demo (VS3-01) counts as done by `tests/manual/runs/2026-10-21-VS3-05.md`: the Service list Q1–Q8 ran with Go/Back and tracking and came back after a daemon restart. The front spots on their own fader next to the list move to the group-masters run (GRM-18), where a group master is the real way to take them out.
+
+**Alternatives considered:** a separate VS3-01 run with the front spots as a playback on 1.8.
+
+**Reasoning:** the run already covered the list and the restart; the front spots as a playback cannot go out while the list holds them up (HTP), a group master can.
+
+**Reversal trigger:** the group-masters run is dropped or deferred beyond phase 1.
+
 ## 2026-10-21 — Cue lists over IPC and in the app (VS3-05, owner)
 
 **Decision:** `ipc.md` IPC-24..28 and the `ui.md` amendments of UI-03, 13, 18, 19, 22, 23: `cue.view` is answered by the tick to the asking client only (never waiting); taps and handle buttons carry their receive time; `master.record` without a number takes the lowest free one; `playback.options` list/chase/master fields are each optional; entries carry the handle's button functions, so the app never applies `handle_buttons` itself. Magenta (#E54BB4 / #B8288A) means a tracked value. Show-wide playback settings sit in a Settings tab of Playback Options; BPM/Rate masters are recorded from Record-context softkeys.

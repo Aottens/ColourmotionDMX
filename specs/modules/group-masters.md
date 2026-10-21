@@ -134,7 +134,7 @@ does; a group master can also take them down.)
   the handle's LED flashes at zero).
 - **GRM-17** Playback Options on a group master shows Handle and **Master** tabs (CUE-46): mode
   (Scale, HTP, Limit, Take Over), scale (100–1000 %, only in Scale) and a Disabled toggle.
-- **GRM-18** `tests/manual/app-group-masters.md` walks: the front spots as a Scale master on 1.8
+- **GRM-18** `tests/manual/app-group-masters.md` walks (and finishes VS3-01's front-spots part, owner 2026-10-21): the front spots as a Scale master on 1.8
   `Locked` while the service cue list runs (out for the video, back to the list's level, on
   another page), scale 200 %, an HTP master as a submaster, a Limit master under a full
   programmer value, Take Over picking up at the spots' level, Disabled, Flash, two masters on one
