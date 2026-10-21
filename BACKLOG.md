@@ -94,7 +94,7 @@ after the specs are added when each spec is approved (no sizing of code before i
 | Id | Task | Spec | Size | Status |
 | --- | --- | --- | --- | --- |
 | P1-05 | Write `control-surfaces.md` (MCU map, generic MIDI map, OSC schema). | CTL | M | todo |
-| P1-16 | Write group masters (Scale / HTP / Limit / TakeOver) as PBK or own criteria; owner approves (owner, 2026-10-18: own small spec, later in phase 1). | GRM | S | review (2026-10-21: `specs/modules/group-masters.md` GRM-01..19, six open questions; build tasks VS3-06/07 sized after approval) |
+| P1-16 | Write group masters (Scale / HTP / Limit / TakeOver) as PBK or own criteria; owner approves (owner, 2026-10-18: own small spec, later in phase 1). | GRM | S | review (2026-10-21: `specs/modules/group-masters.md` GRM-01..19; owner answered the six gate-1 questions, all as proposed; build tasks VS3-06/07 after approval) |
 | P1-10 | Decide and spec one engine-wide undo (programmer, palettes, playbacks, show edits) as UI v0.1 shows it; owner approves. | — | M | todo |
 | P1-06 | Write `ipc.md` (message schema, versioning, snapshot/delta, reconnect) — VS1-05 writes the first subset. | IPC | M | todo |
 

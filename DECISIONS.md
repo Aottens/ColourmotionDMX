@@ -5,6 +5,16 @@ Long-form records live in `specs/ADRs/`; this log is the index.
 
 ---
 
+## 2026-10-21 — Group masters (P1-16, `group-masters.md`, owner)
+
+**Decision:** Answers to the six gate-1 questions of `specs/modules/group-masters.md`, all as proposed: (1) a group master's level is saved in the show, the one live level that is, so a restart never takes a group out; (2) group masters master the whole intensity output, the programmer included, as the Grand Master; (3) Disabled locks the last effect (Titan) and enabling again jumps to the fader; (4) masters of different modes on one fixture apply Scale → HTP → Limit, then the Grand Master; (5) a group master's lower button is Flash (Flash Master), the upper none, Swop as a Custom choice; (6) a group may have several group masters, as on Titan.
+
+**Alternatives considered:** masters starting at their no-effect level after a restart; mastering only playbacks; Disabled as no effect or with pickup; Limit before HTP; Swop + Flash or no buttons; one master per group.
+
+**Reasoning:** show-proof (a crash must not darken the front spots); one mental model with the Grand Master; Titan as behavioural reference where it says something, a hard Limit where it does not.
+
+**Reversal trigger:** programming under a pulled-down group master confuses operators at the church (then exclude the programmer).
+
 ## 2026-10-21 — VS3-01 done by the VS3-05 run (owner)
 
 **Decision:** The service-sized cue list demo (VS3-01) counts as done by `tests/manual/runs/2026-10-21-VS3-05.md`: the Service list Q1–Q8 ran with Go/Back and tracking and came back after a daemon restart. The front spots on their own fader next to the list move to the group-masters run (GRM-18), where a group master is the real way to take them out.

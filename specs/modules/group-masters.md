@@ -3,7 +3,7 @@
 Owner: `cmdmx-core::playback` (a group master is a playback of kind `GroupMaster`, like the
 speed masters), `cmdmx-core::engine` (the tick, after the merge), `cmdmx-daemon` (IPC), the
 strips and Playback Options in `subprojects/app`.
-Status: **draft for owner approval (P1-16, gate 1); open questions at the end.**
+Status: **gate-1 questions answered by the owner 2026-10-21 (all six proposals); owner decisions at the end.**
 Behavioural reference: Avolites Titan v19 manual, *Running the Show → Playback controls →
 Fixture Group Masters* (https://manual.avolites.com/docs/running-the-show/playback-controls):
 a group saved onto a fader handle masters the intensity of its fixtures, in one of the modes
@@ -61,7 +61,7 @@ does; a group master can also take them down.)
   true; Titan's *Disabled*, GRM-11). A change applies from the next tick, without a fade.
 - **GRM-05** A new group master starts at the level at which it changes nothing: 1.0 in
   `Scale`, `Limit` and `TakeOver`, 0.0 in `Htp`. Its level is saved in the show (GRM-13), so a
-  daemon restart or opening the show never changes the stage (owner question 1).
+  daemon restart or opening the show never changes the stage (owner decision 1).
 
 ### What the modes do to the output (per fixture, per `Htp` attribute, per tick)
 - **GRM-06** With *v* the intensity output, the masters that hold the fixture apply in this
@@ -98,7 +98,7 @@ does; a group master can also take them down.)
 - **GRM-11** **Disabled** (`enabled` false; Titan: ignore fader, locked at the current level):
   fader moves and Flash are ignored and the master keeps acting with its mode and the level it
   had when it was disabled. Enabling it again makes the fader count from the next tick; in
-  `Scale`, `Htp` and `Limit` the stage jumps to the fader's level (owner question 3).
+  `Scale`, `Htp` and `Limit` the stage jumps to the fader's level (owner decision 3).
 
 ### Buttons
 - **GRM-12** Handle buttons (CUE-25, 55): a group master's buttons by `handle_buttons`:
@@ -113,7 +113,7 @@ does; a group master can also take them down.)
 - **GRM-13** Schema version 5 (SHW-04 migration from 4, which changes nothing else): `kind`
   may be `GroupMaster`, with `master` `{"group":6,"mode":"Scale","scale":100,"enabled":true,
   "level":1.0}`; `level` is the master level the daemon last had (the fader, not a held Flash),
-  the one live level that is saved (SHW decision 3; owner question 1), and the autosave
+  the one live level that is saved (SHW decision 3; owner decision 1), and the autosave
   (SHW-10) picks up a fader move like any change.
 - **GRM-14** Lenient load (SHW-07), each with one warning naming it: a group master whose group
   is not in the show is kept and masters nothing (GRM-02); a `mode`, `scale` or `level` out of
@@ -184,20 +184,17 @@ Preset master (Pearl extras); the Scene Master (phase 2, Titan analysis); Size m
 Release All Masters; masters on LTP attributes; per-cell masters (P1-13); fader pickup on a
 physical surface (CTL).
 
-## Open questions for the owner (gate 1)
-1. **The level is saved in the show** (GRM-05, 13), against the rule that levels are live
-   state. Without it a restart puts every Scale master at 0 and takes its group out (the front
-   spots dark after a daemon crash). Alternative: start every master at its no-effect level
-   after a restart. Recommendation: save it.
-2. **The programmer is mastered too** (GRM-06 masters the intensity output, the programmer
-   included, as the Grand Master does). The Titan manual does not say; a fixture programmed at
-   full under a group master at 0 then stays dark, which the amber level of GRM-16 explains.
-   Alternative: master only playbacks. Recommendation: master everything.
-3. **Disabled locks the last effect** (GRM-11), as Titan's "locked at the current fader level";
-   re-enabling jumps to the fader. Alternatives: Disabled = no effect at all; or re-enable only
-   after the fader passes the locked level (pickup). Recommendation: as written.
-4. **Order Scale → HTP → Limit** when masters of different modes share a fixture (GRM-06). Titan
-   does not document it; this order keeps Limit a hard limit. Fine?
-5. **Default buttons** (GRM-12): lower Flash (Flash Master), upper none; Swop as a `Custom`
-   choice. Titan's other button functions (Flash Fixtures, Timed Flash) stay out for now.
-6. **Several masters per group** are allowed (GRM-01), as on Titan. Alternative: one per group.
+## Owner decisions (2026-10-21, answers to the gate-1 questions)
+All six proposals accepted.
+
+1. **The level is saved in the show** (GRM-05, 13), the one live level that is: a restart or a
+   crash never takes a group out. Not chosen: every master back at its no-effect level.
+2. **The programmer is mastered too** (GRM-06), as by the Grand Master; the amber level of
+   GRM-16 explains a dark fixture. Not chosen: mastering only playbacks.
+3. **Disabled locks the last effect** (GRM-11), as Titan; enabling again jumps to the fader.
+   Not chosen: a pickup past the locked level; Disabled = no effect.
+4. **Order Scale → HTP → Limit**, then the Grand Master (GRM-06): Limit is always a hard limit.
+   Not chosen: Limit before HTP.
+5. **Buttons:** lower Flash (Flash Master), upper none, Swop as a `Custom` choice (GRM-12);
+   Titan's Flash Fixtures and timed flashes later. Not chosen: Swop + Flash; no buttons.
+6. **Several masters per group** are allowed (GRM-01), as on Titan. Not chosen: one per group.
