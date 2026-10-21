@@ -3,7 +3,7 @@
 Owner: `cmdmx-core::playback` (a group master is a playback of kind `GroupMaster`, like the
 speed masters), `cmdmx-core::engine` (the tick, after the merge), `cmdmx-daemon` (IPC), the
 strips and Playback Options in `subprojects/app`.
-Status: **gate-1 questions answered by the owner 2026-10-21 (all six proposals); owner decisions at the end.**
+Status: **approved by owner 2026-10-21 (P1-16, gate 1; all six proposals); owner decisions at the end.**
 Behavioural reference: Avolites Titan v19 manual, *Running the Show → Playback controls →
 Fixture Group Masters* (https://manual.avolites.com/docs/running-the-show/playback-controls):
 a group saved onto a fader handle masters the intensity of its fixtures, in one of the modes
@@ -170,7 +170,7 @@ unit tests on `cmdmx-core` (`tests/group_masters.rs`, `tests/showfile.rs`); ever
 reaches the frame (GRM-05..12) is a scenario file, Take Over also a unit test on the programmer
 contents.
 
-## Build tasks (`BACKLOG.md`, sized after approval)
+## Build tasks (`BACKLOG.md`)
 1. **VS3-06** core: kind `GroupMaster`, `master.record` for groups, options, mastering in the
    tick (GRM-06..11), buttons (GRM-12), schema 5 with migration and lenient load, scenarios
    (GRM-01..14, 19). Size M.
@@ -185,7 +185,7 @@ Release All Masters; masters on LTP attributes; per-cell masters (P1-13); fader 
 physical surface (CTL).
 
 ## Owner decisions (2026-10-21, answers to the gate-1 questions)
-All six proposals accepted.
+All six proposals accepted; GRM-01..19 approved the same day.
 
 1. **The level is saved in the show** (GRM-05, 13), the one live level that is: a restart or a
    crash never takes a group out. Not chosen: every master back at its no-effect level.
